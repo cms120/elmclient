@@ -12,6 +12,7 @@ import AddUserAddress from '../views/AddUserAddress.vue'
 import EditUserAddress from '../views/EditUserAddress.vue'
 import Register from '../views/Register.vue'
 import TestWeb from '../views/TestWeb.vue'
+import BusinessMap from '../views/BusinessMap.vue'
 
 Vue.use(VueRouter)
 
@@ -27,7 +28,13 @@ const routes = [{
 			path: '/businessList',
 			name: 'BusinessList',
 			component: BusinessList
-		}, {
+		},
+		{
+			path: '/businessMap',
+			name: 'BusinessMap',
+			component: BusinessMap
+		},
+		{
 			path: '/businessInfo',
 			name: 'BusinessInfo',
 			component: BusinessInfo

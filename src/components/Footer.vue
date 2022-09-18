@@ -4,8 +4,8 @@
 			<i class="fa fa-home"></i>
 			<p>首页</p>
 		</li>
-		<li>
-			<i class="fa fa-compass"></i>
+		<li @click="toBusinessMap()">
+			<i class="fa fa-compass" ></i>
 			<p>发现</p>
 		</li>
 		<li @click="toOrderList">
@@ -31,7 +31,13 @@
 				this.$router.push({
 					path: '/orderList'
 				});
+			},
+			toBusinessMap() {
+				this.$router.push({
+					path: '/businessMap'
+				});
 			}
+			
 		}
 	}
 </script>
