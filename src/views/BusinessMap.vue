@@ -3,19 +3,20 @@
 		<baidu-map class="mapId" :center="center" :zoom="zoom" :scroll-wheel-zoom="true" @moving="syncCenterAndZoom"
 			@moveend="syncCenterAndZoom" @zoomend="syncCenterAndZoom" @ready="readyMap">
 
-			<li v-for="item in businessArr" @click="infoWindowOpen(item.businessId)">
-				<bm-marker :position="{lng: item.lng, lat: item.lat}" :dragging="true"
-					animation="BMAP_ANIMATION_BOUNCE">
+
+				<bm-marker :position="{lng: item.lng, lat: item.lat}" :dragging="true" @click="toBusinessInfo(item.businessId)"
+					v-for = "item in businessArr"
+					:icon ="this.businessImg">
 					<bm-label content=item.businessName :labelStyle="{color: 'black', fontSize : '24px'}" />
 				</bm-marker>
-			</li>
+			
 			<!-- 缩放比例尺 -->
 			<bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
 
 			<bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true">
 			</bm-geolocation>
 
-			<bm-marker :position="{lng:117.31851, lat: 39.003545}"></bm-marker>
+			<bm-marker :position="{lng:117.32064, lat: 39.005848}"></bm-marker>
 		</baidu-map>
 	</div>
 </template>
@@ -39,9 +40,8 @@
 		created() {
 			this.user = this.$getSessionStorage('user');
 			//获取所有商家信息
-			this.$axios.post('BusinessController/listBusinessByOrderTypeId').then(response => {
+			this.$axios.post('BusinessController/listBusiness').then(response => {
 				this.businessArr = response.data;
-
 			}).catch(error => {
 				console.error(error);
 			});
@@ -64,8 +64,13 @@
 				this.zoom = e.target.getZoom()
 				console.log(this.zoom);
 			},
-			infoWindowOpen(businessId){
-				
+			toBusinessInfo(businessId) {
+				this.$router.push({
+					path: '/businessInfo',
+					query: {
+						businessId: businessId
+					}
+				});
 			}
 		}
 

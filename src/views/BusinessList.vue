@@ -38,7 +38,7 @@
 		created() {
 			this.user = this.$getSessionStorage('user');
 			//根据orderTypeId查询商家信息
-			this.$axios.post('BusinessController/listBusinessByOrderTypeId', this.$qs.stringify({
+			this.$axios.post('BusinessController/listAllBusiness', this.$qs.stringify({
 				orderTypeId: this.orderTypeId
 			})).then(response => {
 				this.businessArr = response.data;
