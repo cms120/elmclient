@@ -37,7 +37,23 @@
 					收货地址：
 				</div>
 				<div class="content">
-					<input type="text" v-model="deliveryAddress.address" placeholder="收货地址">
+					<input type="text" v-model="deliveryAddress.address.address" placeholder="收货地址">
+				</div>
+			</li>
+			<li>
+				<div class="title">
+					纬度：
+				</div>
+				<div class="content">
+					<input type="number" v-model="deliveryAddress.address.latitudes" placeholder="纬度">
+				</div>
+			</li>
+			<li>
+				<div class="title">
+					经度：
+				</div>
+				<div class="content">
+					<input type="number" v-model="deliveryAddress.address.longitudes" placeholder="经度">
 				</div>
 			</li>
 		</ul>
@@ -60,7 +76,11 @@
 					contactName: '',
 					contactSex: 1,
 					contactTel: '',
-					address: ''
+					address: {
+						address:'',
+						latitudes: 0,
+						longitudes: 0
+					}
 				}
 			}
 		},
@@ -80,14 +100,19 @@
 					alert('联系人电话不能为空！');
 					return;
 				}
-				if (this.deliveryAddress.address == '') {
+				if (this.deliveryAddress.address.address == '') {
 					alert('联系人地址不能为空！');
+					return;
+				}
+				if (!this.deliveryAddress.address.latitudes > 0  || !this.deliveryAddress.address.longitudes > 0) {
+					alert('请输入正确的经纬度');
 					return;
 				}
 				this.deliveryAddress.userId = this.user.userId;
 				this.$axios.post('DeliveryAddressController/saveDeliveryAddress',
 					this.$qs.stringify(
 						this.deliveryAddress
+						
 					)).then(response => {
 					if (response.data > 0) {
 						this.$router.push({

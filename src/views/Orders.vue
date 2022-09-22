@@ -8,7 +8,7 @@
 		<div class="order-info">
 			<h5>订单配送至：</h5>
 			<div class="order-info-address" @click="toUserAddress">
-				<p>{{deliveryaddress!=null?deliveryaddress.address:'请选择送货地址'}}</p>
+				<p>{{deliveryaddress!=null?deliveryaddress.address.address:'请选择送货地址'}}</p>
 				<i class="fa fa-angle-right"></i>
 			</div>
 			<p>{{user.userName}}{{user.userSex | sexFilter}} {{user.userId}}</p>
