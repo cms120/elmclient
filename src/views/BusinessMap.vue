@@ -4,7 +4,7 @@
 			@moveend="syncCenterAndZoom" @zoomend="syncCenterAndZoom" @ready="readyMap">
 
 
-			<bm-marker class="markerId" :position="{lng: item.Address.longitude, lat: 39.003545}" :dragging="true"
+			<bm-marker class="markerId" :position="{lng: item.address.longitudes, lat: item.address.latitudes}" :dragging="true"
 				@click="toBusinessInfo(item.businessId)" v-for="item in businessArr" v-bind:key="item.businessId">
 				<bm-label :content="item.businessName" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />

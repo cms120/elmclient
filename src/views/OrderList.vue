@@ -87,7 +87,7 @@
 		methods: {
 			detailetShow(orders) {
 				orders.isShowDetailet = !orders.isShowDetailet;
-			}
+			},
 			toOrderMap(orders){
 				this.$router.push({
 					path: '/orderMap',

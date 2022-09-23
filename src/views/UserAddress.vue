@@ -10,7 +10,7 @@
 				<div class="addresslist-left" @click="setDeliveryAddress(item)">
 					<h3>{{item.contactName}}{{item.contactSex | sexFilter}} {{item.contactTel}}
 					</h3>
-					<p>{{item.address}}</p>
+					<p>{{item.address.addressExplain}}</p>
 				</div>
 				<div class="addresslist-right">
 					<i class="fa fa-edit" @click="editUserAddress(item.daId)"></i>

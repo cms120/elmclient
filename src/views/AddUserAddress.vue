@@ -34,13 +34,13 @@
 			</li>
 			<li>
 				<div class="title">
-					收货地址：
+					收货地址id：
 				</div>
 				<div class="content">
-					<input type="text" v-model="deliveryAddress.address.address" placeholder="收货地址">
+					<input type="text" v-model="deliveryAddress.address.addressId" placeholder="收货地址编号">
 				</div>
 			</li>
-			<li>
+			<!-- <li>
 				<div class="title">
 					纬度：
 				</div>
@@ -55,7 +55,7 @@
 				<div class="content">
 					<input type="number" v-model="deliveryAddress.address.longitudes" placeholder="经度">
 				</div>
-			</li>
+			</li> -->
 		</ul>
 		<div class="button-add">
 			<button @click="addUserAddress">保存</button>
@@ -72,16 +72,18 @@
 			return {
 				businessId: this.$route.query.businessId,
 				user: {},
+				
 				deliveryAddress: {
 					contactName: '',
 					contactSex: 1,
 					contactTel: '',
 					address: {
-						address:'',
+						addressExplain: '',
 						latitudes: 0,
 						longitudes: 0
 					}
-				}
+				},
+				
 			}
 		},
 		created() {
@@ -100,7 +102,7 @@
 					alert('联系人电话不能为空！');
 					return;
 				}
-				if (this.deliveryAddress.address.address == '') {
+				if (this.deliveryAddress.address.addressExplain == '') {
 					alert('联系人地址不能为空！');
 					return;
 				}

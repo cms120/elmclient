@@ -4,7 +4,7 @@
 			@moveend="syncCenterAndZoom" @zoomend="syncCenterAndZoom" @ready="readyMap">
 
 			<!-- 用户订单派送地址 -->
-			<bm-marker :position="{lng:orders.deliveryaddress.longitudes , lat: orders.deliveryaddress.latitudes}" :dragging="true">
+			<bm-marker :position="{lng:orders.deliveryAddress.longitudes , lat: orders.deliveryAddress.latitudes}" :dragging="true">
 				<bm-label content="UserAddress" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />
 
@@ -45,7 +45,7 @@
 				orderId: this.$route.query.orderId,
 				orders: {
 					business: {},
-					deliveryaddress:{}
+					deliveryAddress:{}
 				},
 				user: {}
 			}

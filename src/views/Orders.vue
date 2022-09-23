@@ -8,7 +8,7 @@
 		<div class="order-info">
 			<h5>订单配送至：</h5>
 			<div class="order-info-address" @click="toUserAddress">
-				<p>{{deliveryaddress!=null?deliveryaddress.address.address:'请选择送货地址'}}</p>
+				<p>{{deliveryAddress!=null?deliveryAddress.address.addressExplain:'请选择送货地址'}}</p>
 				<i class="fa fa-angle-right"></i>
 			</div>
 			<p>{{user.userName}}{{user.userSex | sexFilter}} {{user.userId}}</p>
@@ -48,12 +48,12 @@
 				business: {},
 				user: {},
 				cartArr: [],
-				deliveryaddress: {}
+				deliveryAddress: {}
 			}
 		},
 		created() {
 			this.user = this.$getSessionStorage('user');
-			this.deliveryaddress = this.$getLocalStorage(this.user.userId);
+			this.deliveryAddress = this.$getLocalStorage(this.user.userId);
 			//查询当前商家
 			this.$axios.post('BusinessController/getBusinessById', this.$qs.stringify({
 				businessId: this.businessId
@@ -97,7 +97,7 @@
 				});
 			},
 			toPayment() {
-				if (this.deliveryaddress == null) {
+				if (this.deliveryAddress == null) {
 					alert('请选择送货地址！');
 					return;
 				}
@@ -105,7 +105,7 @@
 				this.$axios.post('OrdersController/createOrders', this.$qs.stringify({
 					userId: this.user.userId,
 					businessId: this.businessId,
-					daId: this.deliveryaddress.daId,
+					daId: this.deliveryAddress.daId,
 					orderTotal: this.totalPrice
 				})).then(response => {
 					let orderId = response.data;
