@@ -27,7 +27,7 @@
 				</div>
 				<div class="food-right">
 					<div>
-						<i class="fa fa-minus-circle" @click="minus(index)" v-show="item.quantity!=0"></i>
+						<i class="fa fa-minus-circle" @click="minus(index)" v- show="item.quantity!=0"></i>
 					</div>
 					<p><span v-show="item.quantity!=0">{{item.quantity}}</span></p>
 					<div>
@@ -57,7 +57,7 @@
 					&#165;{{business.starPrice}}起送
 				</div>
 				<!-- 达到起送费 -->
-				<div class="cart-right-item" @click="toOrder" v-show="totalSettle>=business.starPrice">
+				<div class="cart-right-item" @click="toOrder" v- show="totalSettle>=business.starPrice">
 					去结算
 				</div>
 			</div>

@@ -8,6 +8,7 @@ import Orders from '../views/Orders.vue'
 import UserAddress from '../views/UserAddress.vue'
 import Payment from '../views/Payment.vue'
 import OrderList from '../views/OrderList.vue'
+import OrderMap from '../views/OrderMap.vue'
 import AddUserAddress from '../views/AddUserAddress.vue'
 import EditUserAddress from '../views/EditUserAddress.vue'
 import Register from '../views/Register.vue'
@@ -58,7 +59,11 @@ const routes = [{
 			path: '/orderList',
 			name: 'OrderList',
 			component: OrderList
-		}, {
+		},{
+			path: '/orderMap',
+			name: 'OrderMap',
+			component: OrderMap
+		},{
 			path: '/addUserAddress',
 			name: 'AddUserAddress',
 			component: AddUserAddress

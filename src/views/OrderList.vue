@@ -37,6 +37,8 @@
 					<p>
 						{{item.business.businessName}}
 						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
+						<i class="fa fa-map" @click="toOrderMap(item)"></i>
+						
 					</p>
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
@@ -85,6 +87,14 @@
 		methods: {
 			detailetShow(orders) {
 				orders.isShowDetailet = !orders.isShowDetailet;
+			},
+			toOrderMap(orders){
+				this.$router.push({
+					path: '/orderMap',
+					query: {
+						orderId:orders.orderId
+					}
+				});
 			}
 		},
 		components: {

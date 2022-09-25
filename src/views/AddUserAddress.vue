@@ -34,12 +34,29 @@
 			</li>
 			<li>
 				<div class="title">
-					收货地址：
+					收货地址id：
 				</div>
 				<div class="content">
-					<input type="text" v-model="deliveryAddress.address" placeholder="收货地址">
+					<!-- 未完成 比如选择后显示收货地址或者下拉菜单-->
+					<input type="text" v-model="deliveryAddress.addressId" placeholder="收货地址编号">
 				</div>
 			</li>
+			<!-- <li>
+				<div class="title">
+					纬度：
+				</div>
+				<div class="content">
+					<input type="number" v-model="deliveryAddress.address.latitudes" placeholder="纬度">
+				</div>
+			</li>
+			<li>
+				<div class="title">
+					经度：
+				</div>
+				<div class="content">
+					<input type="number" v-model="deliveryAddress.address.longitudes" placeholder="经度">
+				</div>
+			</li> -->
 		</ul>
 		<div class="button-add">
 			<button @click="addUserAddress">保存</button>
@@ -56,12 +73,19 @@
 			return {
 				businessId: this.$route.query.businessId,
 				user: {},
+				
 				deliveryAddress: {
 					contactName: '',
 					contactSex: 1,
 					contactTel: '',
-					address: ''
-				}
+					addressId: 1
+				},
+				// address: {
+				// 	longitudes: 0,
+				// 	latitudes:0,
+				// 	addressExplain:''
+				// }
+				
 			}
 		},
 		created() {
@@ -80,14 +104,19 @@
 					alert('联系人电话不能为空！');
 					return;
 				}
-				if (this.deliveryAddress.address == '') {
-					alert('联系人地址不能为空！');
+				if (this.deliveryAddress.addressId == '') {
+					alert('联系人地址编号不能为空！');
 					return;
 				}
+				// if (!this.deliveryAddress.address.latitudes > 0  || !this.deliveryAddress.address.longitudes > 0) {
+				// 	alert('请输入正确的经纬度');
+				// 	return;
+				// }
 				this.deliveryAddress.userId = this.user.userId;
 				this.$axios.post('DeliveryAddressController/saveDeliveryAddress',
 					this.$qs.stringify(
 						this.deliveryAddress
+						
 					)).then(response => {
 					if (response.data > 0) {
 						this.$router.push({

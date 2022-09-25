@@ -8,26 +8,32 @@
 		<div class="order-info">
 			<h5>订单配送至：</h5>
 			<div class="order-info-address" @click="toUserAddress">
-				<p>{{deliveryaddress!=null?deliveryaddress.address:'请选择送货地址'}}</p>
+				<p>{{deliveryAddress!=null?deliveryAddress.address.addressExplain:'请选择送货地址'}}</p>
 				<i class="fa fa-angle-right"></i>
 			</div>
 			<p>{{user.userName}}{{user.userSex | sexFilter}} {{user.userId}}</p>
 		</div>
 		<h3>{{business.businessName}}</h3>
+
 		<!-- 订单明细部分 -->
 		<ul class="order-detailed">
 			<li v-for="item in cartArr">
 				<div class="order-detailed-left">
-					<img :src="item.food.foodImg">
-					<p>{{item.food.foodName}} x {{item.quantity}}</p>
+					<img :src="item.foodBo.foodImg">
+					<p>{{item.foodBo.foodName}} x {{item.quantity}}</p>
 				</div>
-				<p>&#165;{{item.food.foodPrice*item.quantity}}</p>
+				<p>&#165;{{item.foodBo.foodPrice * item.quantity}}</p>
 			</li>
 		</ul>
+		<!-- <p>给我狠狠的显示</p> -->
+			
+
+		
 		<div class="order-deliveryfee">
 			<p>配送费</p>
 			<p>&#165;{{business.deliveryPrice}}</p>
 		</div>
+
 		<!-- 合计部分 -->
 		<div class="total">
 			<div class="total-left">
@@ -48,12 +54,12 @@
 				business: {},
 				user: {},
 				cartArr: [],
-				deliveryaddress: {}
+				deliveryAddress: {}
 			}
 		},
 		created() {
 			this.user = this.$getSessionStorage('user');
-			this.deliveryaddress = this.$getLocalStorage(this.user.userId);
+			this.deliveryAddress = this.$getLocalStorage(this.user.userId);
 			//查询当前商家
 			this.$axios.post('BusinessController/getBusinessById', this.$qs.stringify({
 				businessId: this.businessId
@@ -68,6 +74,7 @@
 				businessId: this.businessId
 			})).then(response => {
 				this.cartArr = response.data;
+				// alert(response.data);
 			}).catch(error => {
 				console.error(error);
 			});
@@ -76,7 +83,7 @@
 			totalPrice() {
 				let totalPrice = 0;
 				for (let cartItem of this.cartArr) {
-					totalPrice += cartItem.food.foodPrice * cartItem.quantity;
+					totalPrice += cartItem.foodBo.foodPrice * cartItem.quantity;
 				}
 				totalPrice += this.business.deliveryPrice;
 				return totalPrice;
@@ -97,18 +104,20 @@
 				});
 			},
 			toPayment() {
-				if (this.deliveryaddress == null) {
+				if (this.deliveryAddress == null) {
 					alert('请选择送货地址！');
 					return;
 				}
+				alert('what?');
 				//创建订单
 				this.$axios.post('OrdersController/createOrders', this.$qs.stringify({
 					userId: this.user.userId,
 					businessId: this.businessId,
-					daId: this.deliveryaddress.daId,
+					daId: this.deliveryAddress.daId,
 					orderTotal: this.totalPrice
 				})).then(response => {
 					let orderId = response.data;
+					alert(response.data);
 					if (orderId > 0) {
 						this.$router.push({
 							path: '/payment',
@@ -200,6 +209,7 @@
 	/****************** 订单明细部分 ******************/
 	.wrapper .order-detailed {
 		width: 100%;
+		/* height: 64vw; */
 	}
 
 	.wrapper .order-detailed li {
