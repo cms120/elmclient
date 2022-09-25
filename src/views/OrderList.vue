@@ -9,9 +9,9 @@
 		<ul class="order">
 			<li v-for="item in orderArr" v-if="item.orderState==0">
 				<div class="order-info">
-					<p>
-						{{item.business.businessName}}
+						{{item.businessBo.businessName}}
 						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
+						<i class="fa fa-map" @click="toOrderMap(item)"></i>
 					</p>
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
@@ -20,12 +20,12 @@
 				</div>
 				<ul class="order-detailet" v-show="item.isShowDetailet">
 					<li v-for="odItem in item.list">
-						<p>{{odItem.food.foodName}} x {{odItem.quantity}}</p>
-						<p>&#165;{{odItem.food.foodPrice*odItem.quantity}}</p>
+						<p>{{odItem.foodBo.foodName}} x {{odItem.quantity}}</p>
+						<p>&#165;{{odItem.foodBo.foodPrice*odItem.quantity}}</p>
 					</li>
 					<li>
 						<p>配送费</p>
-						<p>&#165;{{item.business.deliveryPrice}}</p>
+						<p>&#165;{{item.businessBo.deliveryPrice}}</p>
 					</li>
 				</ul>
 			</li>
@@ -35,7 +35,7 @@
 			<li v-for="item in orderArr" v-if="item.orderState==1">
 				<div class="order-info">
 					<p>
-						{{item.business.businessName}}
+						{{item.businessBo.businessName}}
 						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
 						<i class="fa fa-map" @click="toOrderMap(item)"></i>
 						
@@ -46,12 +46,12 @@
 				</div>
 				<ul class="order-detailet" v-show="item.isShowDetailet">
 					<li v-for="odItem in item.list">
-						<p>{{odItem.food.foodName}} x {{odItem.quantity}}</p>
-						<p>&#165;{{odItem.food.foodPrice*odItem.quantity}}</p>
+						<p>{{odItem.foodBo.foodName}} x {{odItem.quantity}}</p>
+						<p>&#165;{{odItem.foodBo.foodPrice*odItem.quantity}}</p>
 					</li>
 					<li>
 						<p>配送费</p>
-						<p>&#165;{{item.business.deliveryPrice}}</p>
+						<p>&#165;{{item.businessBo.deliveryPrice}}</p>
 					</li>
 				</ul>
 			</li>

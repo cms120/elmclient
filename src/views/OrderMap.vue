@@ -7,21 +7,21 @@
 			<bm-marker :position="{lng:orders.daBo.address.longitudes , lat: orders.daBo.address.latitudes}" :dragging="true">
 				<bm-label content="UserAddress" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />
-
+			
 			</bm-marker>
 			
 			<!-- 商家地址 -->
-			<bm-marker  :position="{lng: orders.businessBo.address.longitude, lat: orders.businessBo.address.latitudes}" :dragging="true"
-				@click="toBusinessInfo(orders.business.businessId)">
-				<bm-label :content="orders.business.businessName" :labelStyle="{color: 'black', fontSize : '4px'}"
+			<bm-marker  :position="{lng: orders.businessBo.address.longitudes, lat: orders.businessBo.address.latitudes}" :dragging="true"
+				@click="toBusinessInfo(orders.businessBo.businessId)">
+				<bm-label :content="orders.businessBo.businessName" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />
 			</bm-marker>
 			
 			
-
+			
 			<!-- 缩放比例尺 -->
 			<bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
-
+			
 			<bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true">
 			</bm-geolocation>
 
@@ -43,10 +43,7 @@
 				//百度地图初始化数据
 				baidumapSwitch: false,
 				orderId: this.$route.query.orderId,
-				orders: {
-					business: {},
-					deliveryAddress:{}
-				},
+				orders: {},
 				user: {}
 			}
 		},
