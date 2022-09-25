@@ -37,7 +37,8 @@
 					收货地址id：
 				</div>
 				<div class="content">
-					<input type="text" v-model="deliveryAddress.address.addressId" placeholder="收货地址编号">
+					<!-- 未完成 比如选择后显示收货地址或者下拉菜单-->
+					<input type="text" v-model="deliveryAddress.addressId" placeholder="收货地址编号">
 				</div>
 			</li>
 			<!-- <li>
@@ -77,12 +78,13 @@
 					contactName: '',
 					contactSex: 1,
 					contactTel: '',
-					address: {
-						addressExplain: '',
-						latitudes: 0,
-						longitudes: 0
-					}
+					addressId: 1
 				},
+				// address: {
+				// 	longitudes: 0,
+				// 	latitudes:0,
+				// 	addressExplain:''
+				// }
 				
 			}
 		},
@@ -102,14 +104,14 @@
 					alert('联系人电话不能为空！');
 					return;
 				}
-				if (this.deliveryAddress.address.addressExplain == '') {
-					alert('联系人地址不能为空！');
+				if (this.deliveryAddress.addressId == '') {
+					alert('联系人地址编号不能为空！');
 					return;
 				}
-				if (!this.deliveryAddress.address.latitudes > 0  || !this.deliveryAddress.address.longitudes > 0) {
-					alert('请输入正确的经纬度');
-					return;
-				}
+				// if (!this.deliveryAddress.address.latitudes > 0  || !this.deliveryAddress.address.longitudes > 0) {
+				// 	alert('请输入正确的经纬度');
+				// 	return;
+				// }
 				this.deliveryAddress.userId = this.user.userId;
 				this.$axios.post('DeliveryAddressController/saveDeliveryAddress',
 					this.$qs.stringify(

@@ -14,20 +14,26 @@
 			<p>{{user.userName}}{{user.userSex | sexFilter}} {{user.userId}}</p>
 		</div>
 		<h3>{{business.businessName}}</h3>
+
 		<!-- 订单明细部分 -->
 		<ul class="order-detailed">
 			<li v-for="item in cartArr">
 				<div class="order-detailed-left">
-					<img :src="item.food.foodImg">
-					<p>{{item.food.foodName}} x {{item.quantity}}</p>
+					<img :src="item.foodBo.foodImg">
+					<p>{{item.foodBo.foodName}} x {{item.quantity}}</p>
 				</div>
-				<p>&#165;{{item.food.foodPrice*item.quantity}}</p>
+				<p>&#165;{{item.foodBo.foodPrice * item.quantity}}</p>
 			</li>
 		</ul>
+		<!-- <p>给我狠狠的显示</p> -->
+			
+
+		
 		<div class="order-deliveryfee">
 			<p>配送费</p>
 			<p>&#165;{{business.deliveryPrice}}</p>
 		</div>
+
 		<!-- 合计部分 -->
 		<div class="total">
 			<div class="total-left">
@@ -68,6 +74,7 @@
 				businessId: this.businessId
 			})).then(response => {
 				this.cartArr = response.data;
+				// alert(response.data);
 			}).catch(error => {
 				console.error(error);
 			});
@@ -76,7 +83,7 @@
 			totalPrice() {
 				let totalPrice = 0;
 				for (let cartItem of this.cartArr) {
-					totalPrice += cartItem.food.foodPrice * cartItem.quantity;
+					totalPrice += cartItem.foodBo.foodPrice * cartItem.quantity;
 				}
 				totalPrice += this.business.deliveryPrice;
 				return totalPrice;
@@ -101,6 +108,7 @@
 					alert('请选择送货地址！');
 					return;
 				}
+				alert('what?');
 				//创建订单
 				this.$axios.post('OrdersController/createOrders', this.$qs.stringify({
 					userId: this.user.userId,
@@ -109,6 +117,7 @@
 					orderTotal: this.totalPrice
 				})).then(response => {
 					let orderId = response.data;
+					alert(response.data);
 					if (orderId > 0) {
 						this.$router.push({
 							path: '/payment',
@@ -200,6 +209,7 @@
 	/****************** 订单明细部分 ******************/
 	.wrapper .order-detailed {
 		width: 100%;
+		/* height: 64vw; */
 	}
 
 	.wrapper .order-detailed li {

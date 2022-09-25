@@ -8,7 +8,6 @@
 				@click="toBusinessInfo(item.businessId)" v-for="item in businessArr" v-bind:key="item.businessId">
 				<bm-label :content="item.businessName" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />
-
 			</bm-marker>
 
 			<!-- 缩放比例尺 -->
