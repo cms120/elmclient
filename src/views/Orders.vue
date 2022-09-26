@@ -108,7 +108,7 @@
 					alert('请选择送货地址！');
 					return;
 				}
-				alert('what?');
+				// alert('what?');
 				//创建订单
 				this.$axios.post('OrdersController/createOrders', this.$qs.stringify({
 					userId: this.user.userId,
@@ -117,7 +117,7 @@
 					orderTotal: this.totalPrice
 				})).then(response => {
 					let orderId = response.data;
-					alert(response.data);
+					// alert(response.data);
 					if (orderId > 0) {
 						this.$router.push({
 							path: '/payment',
