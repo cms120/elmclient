@@ -95,6 +95,7 @@
 				}
 				//如果已登录，那么需要去查询购物车中是否已经选购了某个食品
 				if (this.user != null) {
+          // alert("user login");
 					this.listCart();
 				}
 			}).catch(error => {
@@ -112,7 +113,7 @@
 					for (let foodItem of this.foodArr) {
 						foodItem.quantity = 0;
 						for (let cartItem of cartArr) {
-							if (cartItem.foodId == foodItem.foodId) {
+							if (cartItem.foodBo.foodId == foodItem.foodId) {
 								foodItem.quantity = cartItem.quantity;
 							}
 						}
