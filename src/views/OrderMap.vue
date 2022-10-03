@@ -4,14 +4,14 @@
 			@moveend="syncCenterAndZoom" @zoomend="syncCenterAndZoom" @ready="readyMap">
 
 			<!-- 用户订单派送地址 -->
-			<bm-marker :position="{lng:orders.daBo.address.longitudes , lat: orders.daBo.address.latitudes}" :dragging="true">
+			<bm-marker :position="{lng:orders.daBo.address.longitudes , lat: orders.daBo.address.latitudes}" :dragging="false">
 				<bm-label content="UserAddress" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />
 			
 			</bm-marker>
 			
 			<!-- 商家地址 -->
-			<bm-marker  :position="{lng: orders.businessBo.address.longitudes, lat: orders.businessBo.address.latitudes}" :dragging="true"
+			<bm-marker  :position="{lng: orders.businessBo.address.longitudes, lat: orders.businessBo.address.latitudes}" :dragging="false"
 				@click="toBusinessInfo(orders.businessBo.businessId)">
 				<bm-label :content="orders.businessBo.businessName" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />
@@ -31,7 +31,9 @@
 </template>
 
 <script>
-	export default {
+	import Footer from "@/components/Footer";
+
+  export default {
 		name: 'OrderMap',
 		data() {
 			return {
@@ -85,7 +87,10 @@
 					}
 				});
 			}
-		}
+		},
+    components: {
+      Footer
+    }
 
 	}
 </script>

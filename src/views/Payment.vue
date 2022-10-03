@@ -9,15 +9,15 @@
     <div class="order-info">
       <p>
         {{ orders.businessBo.businessName }}
-        <i class="fa fa-caret-down" @click="detailetShow"></i>
+        <i class="fa fa-caret-down" @click="detailShow"></i>
       </p>
       <p>&#165;{{ orders.orderTotal }}</p>
     </div>
     <!-- 订单明细部分 -->
-    <ul class="order-detailet" v-show="isShowDetailet">
-      <li v-for="item in orders.list">
+    <ul class="order-detail" v-show="isShowDetail">
+      <li v-for="item in orders.odBoList">
         <p>{{ item.foodBo.foodName }} x {{ item.quantity }}</p>
-        <p>&#165;{{ item.food.foodPrice * item.quantity }}</p>
+        <p>&#165;{{ item.foodBo.foodPrice * item.quantity }}</p>
       </li>
       <li>
         <p>配送费</p>
@@ -34,7 +34,7 @@
         <img src="../assets/wechat.png">
       </li>
     </ul>
-    <div class="payment-button" @click="changeOrderState">
+    <div class="payment-button" @click="changeOrderState(orderId)">
       <button>确认支付</button>
     </div>
     <!-- 底部菜单部分 -->
@@ -53,7 +53,7 @@ export default {
         business: {},
         orderState: 0
       },
-      isShowDetailet: false
+      isShowDetail: false
     }
   },
   created() {
@@ -81,14 +81,17 @@ export default {
     window.onpopstate = null;
   },
   methods: {
-    detailetShow() {
-      this.isShowDetailet = !this.isShowDetailet;
+    detailShow() {
+      this.isShowDetail = !this.isShowDetail;
     },
-    changeOrderState(orders) {
+    changeOrderState(orderId) {
       alert("支付成功");
-      this.$axios.post('OrdersController/UpdateorderStateById', this.$qs.stringify({
+      this.$axios.post('OrdersController/updateOrderStateById', this.$qs.stringify({
         orderId: this.orderId
-      })).catch(error => {
+      })).then(response => {
+        this.orders = response.data;
+        // alert(response.data);
+      }).catch(error => {
         console.error(error);
       });
       // this.orders.orderState = 1;
@@ -155,11 +158,11 @@ export default {
 }
 
 /****************** 订单明细部分 ******************/
-.wrapper .order-detailet {
+.wrapper .order-detail {
   width: 100%;
 }
 
-.wrapper .order-detailet li {
+.wrapper .order-detail li {
   width: 100%;
   box-sizing: border-box;
   padding: 1vw 4vw;
@@ -168,7 +171,7 @@ export default {
   align-items: center;
 }
 
-.wrapper .order-detailet li p {
+.wrapper .order-detail li p {
   font-size: 3vw;
   color: #666;
 }
@@ -188,7 +191,7 @@ export default {
 }
 
 .wrapper .payment-type li img {
-  width: 33vw;
+  width: 8.9vw;
   height: 8.9vw;
 }
 

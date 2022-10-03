@@ -3,9 +3,8 @@
     <!-- header部分 -->
     <header>
       <div class="icon-location-box">
-        <div class="icon-location"></div>
       </div>
-      <div class="fa fa-map-marker"> 沈阳市规划大厦 <i class="fa fa-caret-down"></i></div>
+      <div class="location-text"><i class="fa fa-map-marker"></i>  天津大学北洋园校区<i class="fa fa-caret-down"></i><i class="fa fa-refresh" @click="RefreshBusiness"></i></div>
     </header>
     <!-- search部分 -->
     <!--
@@ -96,7 +95,7 @@ search-fixed-top块固定后，挡住下面块不要窜上去）
     </ul>
     <!-- 推荐商家列表部分 -->
     <ul class="business">
-      <li v-for="item in businessArr">
+      <li v-for="item in businessArr" @click="toBusinessInfo(item.businessId)">
         <img :src="item.businessImg">
         <div class="business-info">
           <div class="business-info-h">
@@ -159,7 +158,7 @@ export default {
     }
   },
   created() {
-    this.$axios.post('BusinessController/getRandomBusiness')
+    this.$axios.post('BusinessController/listRandomBusiness')
         .then(response => {
           this.businessArr = response.data;
         }).catch(error => {
@@ -202,6 +201,22 @@ export default {
         }
       });
     },
+    toBusinessInfo(businessId) {
+      this.$router.push({
+        path: '/businessInfo',
+        query: {
+          businessId: businessId
+        }
+      });
+    },
+    RefreshBusiness(){
+      location.reload();
+    },
+    toBusinessMap() {
+      this.$router.push({
+        path: '/businessMap'
+      });
+    },
 
     loginn() {
       this.$router.push({
@@ -232,17 +247,23 @@ export default {
   width: 3.5vw;
   height: 3.5vw;
   margin: 0 1vw 0 3vw;
+  font-size: 4.5vw;
+  font-weight: 700;
+  color: #fff;
 }
-
 .wrapper header .location-text {
   font-size: 4.5vw;
   font-weight: 700;
   color: #fff;
 }
-
 .wrapper header .location-text .fa-caret-down {
-  margin-left: 1vw;
+  margin-left:1vw;
 }
+.wrapper header .location-text .fa-refresh {
+  margin-left: 35vw;
+}
+
+
 
 /****************** search ******************/
 .wrapper .search {

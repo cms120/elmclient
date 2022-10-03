@@ -4,7 +4,7 @@
 			@moveend="syncCenterAndZoom" @zoomend="syncCenterAndZoom" @ready="readyMap">
 
 
-			<bm-marker class="markerId" :position="{lng: item.address.longitudes, lat: item.address.latitudes}" :dragging="true"
+			<bm-marker class="markerId" :position="{lng: item.address.longitudes, lat: item.address.latitudes}" :dragging="false"
 				@click="toBusinessInfo(item.businessId)" v-for="item in businessArr" v-bind:key="item.businessId">
 				<bm-label :content="item.businessName" :labelStyle="{color: 'black', fontSize : '4px'}"
 					:offset="{width: -35, height: 30}" />
@@ -22,7 +22,9 @@
 </template>
 
 <script>
-	export default {
+	import Footer from "@/components/Footer";
+
+  export default {
 		name: 'BusinessMap',
 		data() {
 			return {
@@ -74,7 +76,10 @@
 					}
 				});
 			}
-		}
+		},
+    components: {
+      Footer
+    }
 
 	}
 </script>

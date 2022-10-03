@@ -9,17 +9,18 @@
 		<ul class="order">
 			<li v-for="item in orderArr" v-if="item.orderState==0">
 				<div class="order-info">
-						{{item.businessBo.businessName}}
-						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
+
+						<p @click="toBusinessInfo(item.businessBo.businessId)">{{item.businessBo.businessName}}</p>
+						<i class="fa fa-caret-down" @click="detailShow(item)"></i>
 						<i class="fa fa-map" @click="toOrderMap(item)"></i>
-					</p>
+
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
 						<div class="order-info-right-icon" @click="toPayment(item.orderId)">去支付</div>
 					</div>
 				</div>
-				<ul class="order-detailet" v-show="item.isShowDetailet">
-					<li v-for="odItem in item.list">
+				<ul class="order-detail" v-show="item.isShowDetail">
+					<li v-for="odItem in item.odBoList">
 						<p>{{odItem.foodBo.foodName}} x {{odItem.quantity}}</p>
 						<p>&#165;{{odItem.foodBo.foodPrice*odItem.quantity}}</p>
 					</li>
@@ -34,18 +35,18 @@
 		<ul class="order">
 			<li v-for="item in orderArr" v-if="item.orderState==1">
 				<div class="order-info">
-					<p>
-						{{item.businessBo.businessName}}
-						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
-						<i class="fa fa-map" @click="toOrderMap(item)"></i>
+
+						<p  @click="toBusinessInfo(item.businessBo.businessId)">{{item.businessBo.businessName}}</p>
+						<i class="fa fa-caret-down" @click="detailShow(item)"></i>
+						<i class="fa fa-map"   @click="toOrderMap(item)"></i>
 						
-					</p>
+
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
 					</div>
 				</div>
-				<ul class="order-detailet" v-show="item.isShowDetailet">
-					<li v-for="odItem in item.list">
+				<ul class="order-detail" v-show="item.isShowDetail">
+					<li v-for="odItem in item.odBoList">
 						<p>{{odItem.foodBo.foodName}} x {{odItem.quantity}}</p>
 						<p>&#165;{{odItem.foodBo.foodPrice*odItem.quantity}}</p>
 					</li>
@@ -77,7 +78,7 @@
 			})).then(response => {
 				let result = response.data;
 				for (let orders of result) {
-					orders.isShowDetailet = false;
+					orders.isShowDetail = false;
 				}
 				this.orderArr = result;
 			}).catch(error => {
@@ -85,8 +86,8 @@
 			});
 		},
 		methods: {
-			detailetShow(orders) {
-				orders.isShowDetailet = !orders.isShowDetailet;
+			detailShow(orders) {
+				orders.isShowDetail = !orders.isShowDetail;
 			},
 			toOrderMap(orders){
 				this.$router.push({
@@ -101,6 +102,14 @@
           path: '/payment',
           query: {
             orderId:orderId
+          }
+        });
+      },
+      toBusinessInfo(businessId) {
+        this.$router.push({
+          path: '/businessInfo',
+          query: {
+            businessId: businessId
           }
         });
       }
@@ -175,11 +184,11 @@
 		cursor: pointer;
 	}
 
-	.wrapper .order li .order-detailet {
+	.wrapper .order li .order-detail {
 		width: 100%;
 	}
 
-	.wrapper .order li .order-detailet li {
+	.wrapper .order li .order-detail li {
 		width: 100%;
 		box-sizing: border-box;
 		padding: 1vw 4vw;
