@@ -88,7 +88,7 @@
 		background-color: #32d0ab;
 
 		.mapId {
-			height: 900px;
+			height: 650px;
 			width: 100%;
 		}
 	}
