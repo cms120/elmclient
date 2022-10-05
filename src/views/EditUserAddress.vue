@@ -116,7 +116,6 @@ export default {
         alert('联系人电话不能为空！');
         return;
       }
-      alert(this.deliveryAddress.addressId)
       this.$axios.post('DeliveryAddressController/updateDeliveryAddress',
           this.$qs.stringify(
               this.deliveryAddress

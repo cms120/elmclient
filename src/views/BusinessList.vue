@@ -2,7 +2,8 @@
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
-			<p>商家列表</p>
+      <div class="return"><i class="fa fa-arrow-left" @click="Previous_Page()"></i></div>
+			<p class="words">商家列表</p>
 		</header>
 		<!-- 商家列表部分 -->
 		<ul class="business">
@@ -21,6 +22,7 @@
 			</li>
 		</ul>
 		<!-- 底部菜单部分 -->
+    <div class="blank"></div>
 		<Footer></Footer>
 	</div>
 </template>
@@ -73,6 +75,9 @@
 					console.error(error);
 				});
 			},
+      Previous_Page(){
+        this.$router.go(-1);
+      },
 			toBusinessInfo(businessId) {
 				this.$router.push({
 					path: '/businessInfo',
@@ -106,6 +111,11 @@
 		justify-content: center;
 		align-items: center;
 	}
+  .wrapper header .return .fa-arrow-left{
+    top:4.0vw;
+    position: absolute;
+    left: 2.0vw;
+  }
 
 	/****************** 商家列表部分 ******************/
 	.wrapper .business {
@@ -124,6 +134,11 @@
 		display: flex;
 		align-items: center;
 	}
+  /****************** 空白 ******************/
+  .wrapper .blank {
+    width: 100%;
+    height: 0.1vw;
+  }
 
 	.wrapper .business li .business-img {
 		/*这里设置为相当定位，成为business-img-quantity元素的父元素*/

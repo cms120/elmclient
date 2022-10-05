@@ -3,6 +3,7 @@
 		<!-- header部分 -->
 		<header>
 			<p>确认订单</p>
+      <div class="return"><i class="fa fa-arrow-left" @click="Previous_Page()"></i></div>
 		</header>
 		<!-- 订单信息部分 -->
 		<div class="order-info">
@@ -95,6 +96,9 @@
 			}
 		},
 		methods: {
+      Previous_Page(){
+        this.$router.go(-1);
+      },
 			toUserAddress() {
 				this.$router.push({
 					path: '/userAddress',
@@ -103,6 +107,7 @@
 					}
 				});
 			},
+
 			toPayment() {
 				if (this.deliveryAddress == null) {
 					alert('请选择送货地址！');
@@ -157,6 +162,11 @@
 		justify-content: center;
 		align-items: center;
 	}
+  .wrapper header .return .fa-arrow-left{
+    top:4.0vw;
+    position: absolute;
+    left: 2.0vw;
+  }
 
 	/****************** 订单信息部分 ******************/
 	.wrapper .order-info {

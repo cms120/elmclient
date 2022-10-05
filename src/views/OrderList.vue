@@ -3,6 +3,7 @@
 		<!-- header部分 -->
 		<header>
 			<p>我的订单</p>
+      <div class="return"><i class="fa fa-arrow-left" @click="Previous_Page()"></i></div>
 		</header>
 		<!-- 订单列表部分 -->
 		<h3>未支付订单信息：</h3>
@@ -86,6 +87,9 @@
 			});
 		},
 		methods: {
+      Previous_Page(){
+        this.$router.go(-1);
+      },
 			detailShow(orders) {
 				orders.isShowDetail = !orders.isShowDetail;
 			},
@@ -142,6 +146,12 @@
 		justify-content: center;
 		align-items: center;
 	}
+
+  .wrapper header .return .fa-arrow-left{
+    top:4.0vw;
+    position: absolute;
+    left: 2.0vw;
+  }
 
 	/****************** 历史订单列表部分 ******************/
 	.wrapper h3 {

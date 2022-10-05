@@ -2,6 +2,7 @@
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
+      <div class="return"><i class="fa fa-arrow-left" @click="Previous_Page()"></i></div>
 			<p>商家信息</p>
 		</header>
 		<!-- 商家logo部分 -->
@@ -36,6 +37,7 @@
 				</div>
 			</li>
 		</ul>
+    <div class="blank"></div>
 		<!-- 购物车部分 -->
 		<div class="cart">
 			<div class="cart-left">
@@ -50,6 +52,7 @@
 					<p>另需配送费{{business.deliveryPrice}}元</p>
 				</div>
 			</div>
+
 			<div class="cart-right">
 				<!-- 不够起送费 -->
 				<div class="cart-right-item" v-show="totalSettle<business.starPrice"
@@ -103,6 +106,9 @@
 			});
 		},
 		methods: {
+      Previous_Page(){
+        this.$router.go(-1);
+      },
 			listCart() {
 				this.$axios.post('CartController/listCart', this.$qs.stringify({
 					businessId: this.businessId,
@@ -246,7 +252,10 @@
 		width: 100%;
 		height: 100%;
 	}
-
+  .wrapper .blank {
+    width: 100%;
+    height: 0.1vw;
+  }
 	/****************** header部分 ******************/
 	.wrapper header {
 		width: 100%;
@@ -262,6 +271,12 @@
 		justify-content: center;
 		align-items: center;
 	}
+  .wrapper header .return .fa-arrow-left{
+    top:4.0vw;
+    position: absolute;
+    left: 2.0vw;
+  }
+
 
 	/****************** 商家logo部分 ******************/
 	.wrapper .business-logo {

@@ -18,7 +18,10 @@
 
 			<bm-marker :position="{lng:117.32064, lat: 39.005848}"></bm-marker>
 		</baidu-map>
-	</div>
+
+
+
+  </div>
 </template>
 
 <script>
@@ -88,7 +91,7 @@
 		background-color: #32d0ab;
 
 		.mapId {
-			height: 650px;
+			height: 620px;
 			width: 100%;
 		}
 	}

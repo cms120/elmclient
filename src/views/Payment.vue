@@ -3,6 +3,7 @@
     <!-- header部分 -->
     <header>
       <p>在线支付</p>
+      <div class="return"><i class="fa fa-arrow-left" @click="Previous_Page()"></i></div>
     </header>
     <!-- 订单信息部分 -->
     <h3>订单信息：</h3>
@@ -36,6 +37,9 @@
     </ul>
     <div class="payment-button" @click="changeOrderState(orderId)">
       <button>确认支付</button>
+    </div>
+    <div class="dispayment-button" @click="toIndex()">
+      <button>我再想想</button>
     </div>
     <!-- 底部菜单部分 -->
     <Footer></Footer>
@@ -81,6 +85,14 @@ export default {
     window.onpopstate = null;
   },
   methods: {
+    toIndex() {
+      this.$router.push({
+        path: '/index'
+      });
+    },
+    Previous_Page(){
+      this.$router.go(-1);
+    },
     detailShow() {
       this.isShowDetail = !this.isShowDetail;
     },
@@ -133,6 +145,11 @@ export default {
   align-items: center;
 }
 
+.wrapper header .return .fa-arrow-left{
+  top:4.0vw;
+  position: absolute;
+  left: 2.0vw;
+}
 /****************** 订单信息部分 ******************/
 .wrapper h3 {
   margin-top: 12vw;
@@ -203,8 +220,14 @@ export default {
 .wrapper .payment-button {
   width: 100%;
   box-sizing: border-box;
-  padding: 4vw;
+  padding: 2vw;
 }
+.wrapper .dispayment-button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2vw;
+}
+
 
 .wrapper .payment-button button {
   width: 100%;
@@ -214,6 +237,16 @@ export default {
   outline: none;
   border-radius: 4px;
   background-color: #38CA73;
+  color: #fff;
+}
+.wrapper .dispayment-button button {
+  width: 100%;
+  height: 10vw;
+  border: none;
+  /*去掉外轮廓线*/
+  outline: none;
+  border-radius: 4px;
+  background-color: #888888;
   color: #fff;
 }
 </style>
