@@ -62,8 +62,7 @@
 					if (user == null) {
 						alert('用户名或密码不正确！');
 					} else {
-						//sessionstorage有容量限制，为了防止数据溢出，所以不将userImg数据放入session
-						中
+						//sessionstorage有容量限制，为了防止数据溢出，所以不将userImg数据放入session中
 						user.userImg = '';
 						this.$setSessionStorage('user', user);
 						this.$router.go(-1);
