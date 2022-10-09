@@ -9,12 +9,12 @@
 		<div class="order-info">
 			<p>
 				{{orders.business.businessName}}
-				<i class="fa fa-caret-down" @click="detailetShow"></i>
+				<i class="fa fa-caret-down" @click="detailShow"></i>
 			</p>
 			<p>&#165;{{orders.orderTotal}}</p>
 		</div>
 		<!-- 订单明细部分 -->
-		<ul class="order-detailet" v-show="isShowDetailet">
+		<ul class="order-detail" v-show="isShowDetail">
 			<li v-for="item in orders.list">
 				<p>{{item.food.foodName}} x {{item.quantity}}</p>
 				<p>&#165;{{item.food.foodPrice*item.quantity}}</p>
@@ -51,7 +51,7 @@
 				orders: {
 					business: {}
 				},
-				isShowDetailet: false
+				isShowDetail: false
 			}
 		},
 		created() {
@@ -78,8 +78,8 @@
 			window.onpopstate = null;
 		},
 		methods: {
-			detailetShow() {
-				this.isShowDetailet = !this.isShowDetailet;
+			detailShow() {
+				this.isShowDetail = !this.isShowDetail;
 			}
 		},
 		components: {
@@ -135,11 +135,11 @@
 	}
 
 	/****************** 订单明细部分 ******************/
-	.wrapper .order-detailet {
+	.wrapper .order-detail {
 		width: 100%;
 	}
 
-	.wrapper .order-detailet li {
+	.wrapper .order-detail li {
 		width: 100%;
 		box-sizing: border-box;
 		padding: 1vw 4vw;
@@ -148,7 +148,7 @@
 		align-items: center;
 	}
 
-	.wrapper .order-detailet li p {
+	.wrapper .order-detail li p {
 		font-size: 3vw;
 		color: #666;
 	}

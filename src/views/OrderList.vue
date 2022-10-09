@@ -11,14 +11,14 @@
 				<div class="order-info">
 					<p>
 						{{item.business.businessName}}
-						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
+						<i class="fa fa-caret-down" @click="detailShow(item)"></i>
 					</p>
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
 						<div class="order-info-right-icon">去支付</div>
 					</div>
 				</div>
-				<ul class="order-detailet" v-show="item.isShowDetailet">
+				<ul class="order-detail" v-show="item.isShowDetail">
 					<li v-for="odItem in item.list">
 						<p>{{odItem.food.foodName}} x {{odItem.quantity}}</p>
 						<p>&#165;{{odItem.food.foodPrice*odItem.quantity}}</p>
@@ -36,13 +36,13 @@
 				<div class="order-info">
 					<p>
 						{{item.business.businessName}}
-						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
+						<i class="fa fa-caret-down" @click="detailShow(item)"></i>
 					</p>
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
 					</div>
 				</div>
-				<ul class="order-detailet" v-show="item.isShowDetailet">
+				<ul class="order-detail" v-show="item.isShowDetail">
 					<li v-for="odItem in item.list">
 						<p>{{odItem.food.foodName}} x {{odItem.quantity}}</p>
 						<p>&#165;{{odItem.food.foodPrice*odItem.quantity}}</p>
@@ -75,7 +75,7 @@
 			})).then(response => {
 				let result = response.data;
 				for (let orders of result) {
-					orders.isShowDetailet = false;
+					orders.isShowDetail = false;
 				}
 				this.orderArr = result;
 			}).catch(error => {
@@ -83,8 +83,8 @@
 			});
 		},
 		methods: {
-			detailetShow(orders) {
-				orders.isShowDetailet = !orders.isShowDetailet;
+			detailShow(orders) {
+				orders.isShowDetail = !orders.isShowDetail;
 			}
 		},
 		components: {
@@ -156,11 +156,11 @@
 		cursor: pointer;
 	}
 
-	.wrapper .order li .order-detailet {
+	.wrapper .order li .order-detail {
 		width: 100%;
 	}
 
-	.wrapper .order li .order-detailet li {
+	.wrapper .order li .order-detail li {
 		width: 100%;
 		box-sizing: border-box;
 		padding: 1vw 4vw;
