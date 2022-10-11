@@ -5,62 +5,59 @@
       <div class="icon-location-box">
         <div class="icon-location"></div>
       </div>
-      <div class="location-text">沈阳市规划大厦<i class="fa fa-caret-down"></i></div>
+      <div class="location-text">天津大学北洋园<i class="fa fa-caret-down"></i></div>
     </header>
     <!-- search部分 -->
-    <!--
-搜索框部分（此块与search-fixed-top块宽度高度一致，用于当
-search-fixed-top块固定后，挡住下面块不要窜上去）
--->
+    <!--搜索框部分（此块与search-fixed-top块宽度高度一致，用于当search-fixed-top块固定后，挡住下面块不要窜上去）-->
     <div class="search">
       <!-- 当滚动条超过上面的定位块时，search-fixed-top块变成固定在顶部。 -->
       <div ref="fixedBox" class="search-fixed-top">
         <!-- 搜索框部分中间的白框 -->
         <div class="search-box">
-          <i class="fa fa-search"></i>搜索饿了么商家、商品名称
+          <i class="fa fa-search"></i>搜索饿了么商家、商品
         </div>
       </div>
     </div>
     <!-- 点餐分类部分 -->
-    <ul class="foodtype">
+    <ul class="food-type">
       <li @click="toBusinessList(1)">
-        <img src="../assets/dcfl01.png">
+        <img src="../assets/foodType01.png" alt="美食">
         <p>美食</p>
       </li>
       <li @click="toBusinessList(2)">
-        <img src="../assets/dcfl02.png">
+        <img src="../assets/foodType02.png" alt="早餐">
         <p>早餐</p>
       </li>
       <li @click="toBusinessList(3)">
-        <img src="../assets/dcfl03.png">
+        <img src="../assets/foodType03.png" alt="跑腿代购">
         <p>跑腿代购</p>
       </li>
       <li @click="toBusinessList(4)">
-        <img src="../assets/dcfl04.png">
+        <img src="../assets/foodType04.png" alt="汉堡披萨">
         <p>汉堡披萨</p>
       </li>
       <li @click="toBusinessList(5)">
-        <img src="../assets/dcfl05.png">
+        <img src="../assets/foodType05.png" alt="甜品饮品">
         <p>甜品饮品</p>
       </li>
       <li @click="toBusinessList(6)">
-        <img src="../assets/dcfl06.png">
+        <img src="../assets/foodType06.png" alt="素食简餐">
         <p>速食简餐</p>
       </li>
       <li @click="toBusinessList(7)">
-        <img src="../assets/dcfl07.png">
+        <img src="../assets/foodType07.png" alt="地方小吃">
         <p>地方小吃</p>
       </li>
       <li @click="toBusinessList(8)">
-        <img src="../assets/dcfl08.png">
+        <img src="../assets/foodType08.png" alt="米粉面馆">
         <p>米粉面馆</p>
       </li>
       <li @click="toBusinessList(9)">
-        <img src="../assets/dcfl09.png">
+        <img src="../assets/foodType09.png" alt="包子粥铺">
         <p>包子粥铺</p>
       </li>
       <li @click="toBusinessList(10)">
-        <img src="../assets/dcfl10.png">
+        <img src="../assets/foodType10.png" alt="炸鸡炸串">
         <p>炸鸡炸串</p>
       </li>
     </ul>
@@ -71,9 +68,9 @@ search-fixed-top块固定后，挡住下面块不要窜上去）
       <a>立即抢购 &gt;</a>
     </div>
     <!-- 超级会员部分 -->
-    <div class="supermember">
+    <div class="superVIP">
       <div class="left">
-        <img src="../assets/super_member.png">
+        <img src="../assets/superVIP.png">
         <h3>超级会员</h3>
         <p>&#8226; 每月享超值权益</p>
       </div>
@@ -447,7 +444,7 @@ export default {
 }
 
 /****************** 点餐分类部分 ******************/
-.wrapper .foodtype {
+.wrapper .food-type {
   width: 100%;
   height: 48vw;
   display: flex;
@@ -457,7 +454,7 @@ export default {
   align-content: center;
 }
 
-.wrapper .foodtype li {
+.wrapper .food-type li {
   /*一共10个子元素，通过计算，子元素宽度在16.7 ~ 20 之间，才能保证换两行*/
   width: 18vw;
   height: 20vw;
@@ -470,13 +467,13 @@ export default {
   cursor: pointer;
 }
 
-.wrapper .foodtype li img {
+.wrapper .food-type li img {
   width: 12vw;
   /*视频讲解时高度设置为12vw，实际上设置为10.3vw更佳*/
   height: 10.3vw;
 }
 
-.wrapper .foodtype li p {
+.wrapper .food-type li p {
   font-size: 3.2vw;
   color: #666;
 }
@@ -516,7 +513,7 @@ export default {
 }
 
 /****************** 超级会员部分 ******************/
-.wrapper .supermember {
+.wrapper .superVIP {
   /*这里也设置容器宽度95%，不能用padding，因为背景色也会充满padding*/
   width: 95%;
   margin: 0 auto;
@@ -530,29 +527,29 @@ export default {
   align-items: center;
 }
 
-.wrapper .supermember .left {
+.wrapper .superVIP .left {
   display: flex;
   align-items: center;
   margin-left: 4vw;
   user-select: none;
 }
 
-.wrapper .supermember .left img {
+.wrapper .superVIP .left img {
   width: 6vw;
   height: 6vw;
   margin-right: 2vw;
 }
 
-.wrapper .supermember .left h3 {
+.wrapper .superVIP .left h3 {
   font-size: 4vw;
   margin-right: 2vw;
 }
 
-.wrapper .supermember .left p {
+.wrapper .superVIP .left p {
   font-size: 3vw;
 }
 
-.wrapper .supermember .right {
+.wrapper .superVIP .right {
   font-size: 3vw;
   margin-right: 4vw;
   cursor: pointer;
