@@ -70,7 +70,7 @@
     <!-- 超级会员部分 -->
     <div class="superVIP">
       <div class="left">
-        <img src="../assets/superVIP.png">
+        <img src="../assets/superVIP.png" alt="superVIP">
         <h3>超级会员</h3>
         <p>&#8226; 每月享超值权益</p>
       </div>
@@ -85,7 +85,7 @@
       <div class="recommend-line"></div>
     </div>
     <!-- 推荐方式部分 -->
-    <ul class="recommendtype">
+    <ul class="recommendType">
       <li>综合排序<i class="fa fa-caret-down"></i></li>
       <li>距离最近</li>
       <li>销量最高</li>
@@ -576,7 +576,7 @@ export default {
 }
 
 /****************** 推荐方式部分 ******************/
-.wrapper .recommendtype {
+.wrapper .recommendType {
   width: 100%;
   height: 5vw;
   margin-bottom: 5vw;
@@ -585,7 +585,7 @@ export default {
   align-items: center;
 }
 
-.wrapper .recommendtype li {
+.wrapper .recommendType li {
   font-size: 3.5vw;
   color: #555;
 }
